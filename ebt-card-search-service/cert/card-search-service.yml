@@ -1,0 +1,258 @@
+---
+server:
+  port: 10097
+  servlet:
+    context-path: /openapi
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7075/eureka/
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8085
+        username: ivr
+        password: password
+
+logging:
+  config: ../config/log4j2.xml
+
+ebtedge:
+  config:
+    extracts:
+      - state: AL
+        file: ALxml.xml
+      - state: ID
+        file: IDxml.xml
+      - state: TX
+        file: TXxml.xml
+      - state: AR
+        file: ARxml.xml
+      - state: AZ
+        file: AZxml.xml
+      - state: C4
+        file: C4xml.xml
+      - state: CA
+        file: CAxml.xml
+      - state: CO
+        file: COxml.xml
+      - state: DC
+        file: DCxml.xml
+      - state: DE
+        file: DExml.xml
+      - state: FL
+        file: FLxml.xml
+      - state: KS
+        file: KSxml.xml
+      - state: KY
+        file: KYxml.xml
+      - state: MN
+        file: MNxml.xml
+      - state: MO
+        file: MOxml.xml
+      - state: NC
+        file: NCxml.xml
+      - state: ND
+        file: NDxml.xml
+      - state: NE
+        file: NExml.xml
+      - state: NH
+        file: NHxml.xml
+      - state: NM
+        file: NMxml.xml
+      - state: NV
+        file: NVxml.xml
+      - state: OR
+        file: ORxml.xml
+      - state: PR
+        file: PRxml.xml
+      - state: RI
+        file: RIxml.xml
+      - state: SD
+        file: SDxml.xml
+      - state: TN
+        file: TNxml.xml
+      - state: VT
+        file: VTxml.xml
+      - state: VI
+        file: VIxml.xml
+      - state: WA
+        file: WAxml.xml
+      - state: WY
+        file: WYxml.xml
+      - state: HI
+        file: HIxml.xml
+      - state: GU
+        file: GUxml.xml
+      - state: C7
+        file: C7xml.xml
+      - state: AS
+        file: ASxml.xml
+      - state: N2
+        file: N2xml.xml
+      - state: AK
+        file: AKxml.xml
+      - state: WV
+        file: WVxml.xml
+      - state: WI
+        file: WIxml.xml
+      - state: Global
+        file: Global.xml
+  tandem:
+    file: server.config.xml
+
+card-service:
+  contextPath: '/openapi'
+  PINValidationStates: 'DD'
+  ipAddressHeader: 'X-Forwarded-For'
+  oppagency: 'yasd'
+  dualAgencyStates: 'ALDHRA,ALDHRF,ALMED,ALDHR'
+  aru1validationField1Values: 'LBD,SBD,PBD,OLB,PSD,SSC,SSN,SS4,S4C,PSS,OID,PWD,ZP5,ZP9,PSN,PPW,PSC,CN1,PZ5,YY2'
+  aru1ValidationRestrictBlankValues: 'PWD,OID,PPW'
+  showBeneAvailTranForState: 'FL,CO,NE,WA,WY,HI,ID,NC,SD,WI'
+  jwt:
+    secretKey: 'ThisIsSecret'
+    issuer: 'EBT'
+    accessTokenTimeOut: '5'
+    refreshTokenTimeOut:  '1'
+  encryption:
+    key: EBTMOBILE
+
+proxy:
+  isEnabled: 'Yes'
+  url:  proxy.fnfis.com
+  port: 8080
+
+cdp-server:
+  cdp-global-config:
+    grantType: client_credentials
+    clinicId: 1
+    initiatingUserId: ebtdev1
+    localAgencyId:  0
+    messageVersion: 2018.1-Preview
+    username: ebtdev1
+    wicEbtSystemId: 3
+    wicMisSystemId: 6
+    workstationId: KYJG01
+  cdp-benefit-method:
+    benefitBalUri: WicEbaBenefit/GetBenefitBalance
+    scope: WUMEI.EBA.Manage
+    messageOrFileTypeCode: 3200
+  cdp-cardholder-method:
+    getCardsUri: CardholderCard/GetCardholdersCards
+    scope: WUMEI.CardholderCard.History
+    messageOrFileTypeCode: 3600
+  cdp-history-method:
+    redemptionUri:  WicEbaBenefit/GetBenefitRedemptionHistory
+    scope: WUMEI.EBA.Manage
+    messageOrFileTypeCode: 3400
+  cdp-issuance-history-method:
+    issuanceUri:  WicEbaBenefit/GetBenefitMaintenanceHistory
+    scope: WUMEI.EBA.Manage
+    messageOrFileTypeCode: 3300
+  cdp-pin-select-method:
+    pinSelectUri:  CardholderCard/AddUpdatePin
+    scope: WUMEI.CardholderCard.PIN
+    messageOrFileTypeCode: 1700
+    actionCode: '002'
+  cdp-state-config:
+    - name: CA
+      wicStateAgencyId: '007'
+      baseUri: https://catestweb.cdpehs.com/WUMEI
+      authTokenUrl: https://catestweb.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: AK
+      wicStateAgencyId: '003'
+      baseUri: https://ebtcert15.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert15.cdpehs.com/oauth/connect/token
+      clientId: EBT2.6
+      clientSecret:  'p@ssword123'
+      installation: EBT2
+    - name: WI
+      wicStateAgencyId: '089'
+      baseUri: https://ebtcert01.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert01.cdpehs.com/oauth/connect/token
+      clientId: EBT.6
+      clientSecret:  'p@ssword123'
+      installation: EBT
+    - name: N2
+      wicStateAgencyId: '047'
+      baseUri: https://ebtcert10.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert10.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: C6
+      wicStateAgencyId: '012'
+      baseUri: https://c6testweb.cdpehs.com/WUMEI
+      authTokenUrl: https://c6testweb.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: ND
+      wicStateAgencyId: '055'
+      baseUri: https://ndtestweb.cdpehs.com/WUMEI
+      authTokenUrl: https://ndtestweb.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: HI
+      wicStateAgencyId: '026'
+      baseUri: https://hitestweb.cdpehs.com/WUMEI
+      authTokenUrl: https://hitestweb.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: ID
+      wicStateAgencyId: '027'
+      baseUri: https://ebtcert15.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert15.cdpehs.com/oauth/connect/token
+      clientId: EBT5.6
+      clientSecret:  'p@ssword123'
+      installation: EBT5
+    - name: WA
+      wicStateAgencyId: '085'
+      baseUri: https://ebtcert15.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert15.cdpehs.com/oauth/connect/token
+      clientId: EBT3.6
+      clientSecret:  'p@ssword123'
+      installation: EBT3
+    - name: MN
+      wicStateAgencyId: '042'
+      baseUri: https://ebtcert15.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert15.cdpehs.com/oauth/connect/token
+      clientId: EBT4.6
+      clientSecret:  'p@ssword123'
+      installation: EBT4
+    - name: NE
+      wicStateAgencyId: '048'
+      baseUri: https://ebtcert15.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert15.cdpehs.com/oauth/connect/token
+      clientId: EBT.6
+      clientSecret:  'p@ssword123'
+      installation: EBT
+    - name: KS
+      wicStateAgencyId: '035'
+      baseUri: https://ebtcert12.cdpehs.com/WUMEI
+      authTokenUrl: https://ebtcert12.cdpehs.com/oauth/connect/token
+      clientId: EBT.6
+      clientSecret:  'p@ssword123'
+      installation: EBT
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+testConfig:
+  cardSearchTestConfig:
+    testCards: 5053490040003749
+    uri: /search/cards
+---
