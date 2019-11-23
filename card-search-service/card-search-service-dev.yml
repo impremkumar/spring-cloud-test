@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: card-search-service
+hello:
+  dev
