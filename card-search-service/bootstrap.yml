@@ -1,6 +1,5 @@
 spring:
-  application:
-    name: ebt-sbc-card-search-service
   cloud:
     config:
-      uri: http://localhost:7076
+      uri:
+        - http://localhost:7076
