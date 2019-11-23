@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ebt-sbc-card-search-service
