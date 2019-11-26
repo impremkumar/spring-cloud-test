@@ -6,3 +6,5 @@ spring:
           uri: https://github.com/impremkumar/spring-cloud-test
           search-paths:
             - '*'
+      discovery:
+        enabled: true
